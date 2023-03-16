@@ -1,2 +1,2 @@
-# -Karatsuba-s_Revenge
+# Karatsuba-s_Revenge
 I extremly hate you.

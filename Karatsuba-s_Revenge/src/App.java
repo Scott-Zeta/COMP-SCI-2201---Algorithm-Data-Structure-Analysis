@@ -7,7 +7,7 @@ public class App {
         sc.close();
         String sum = plus(input[0], input[1], input[2]);
         String mul = multipli(input[0], input[1], input[2]);
-
+        // System.out.println(fillZero(input[0], input[1])[0] + " " + fillZero(input[0], input[1])[1]);
         System.out.println(sum + " " + mul + " " + "0" );
     }
 
@@ -71,9 +71,33 @@ public class App {
 
     public static String multipli(String n1, String n2, String baseStr){
         int base = Integer.valueOf(baseStr);
-        
+        String[] fillZero = fillZero(n1, n2);
+        n1 = fillZero[0];
+        n2 = fillZero[1];
 
         return null;
+    }
+
+    public static String[] fillZero(String n1, String n2){
+        StringBuilder sb = new StringBuilder();
+        int d1 = n1.length();
+        int d2 = n2.length();
+        
+        if(d1>d2){
+            for(int i=0; i < d1-d2; i++){
+                sb.append('0');
+            }
+            sb.append(n2);
+            n2 = sb.toString();
+        }
+        if(d2>d1){
+            for(int i=0; i < d2-d1; i++){
+                sb.append('0');
+            }
+            sb.append(n1);
+            n1 = sb.toString();
+        }
+        return new String[] {n1,n2};
     }
 
     public static String mulDigit(int d1, int d2, int base){

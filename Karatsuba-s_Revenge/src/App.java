@@ -6,7 +6,9 @@ public class App {
         String[] input = sc.nextLine().split("\\s+");
         sc.close();
         String sum = plus(input[0], input[1], input[2]);
-        System.out.println(sum + " " + "0" + " " + "0" );
+        String mul = multipli(input[0], input[1], input[2]);
+
+        System.out.println(sum + " " + mul + " " + "0" );
     }
 
     public static String plus(String n1, String n2, String baseStr){
@@ -67,5 +69,16 @@ public class App {
         return sb.toString();
     }
 
+    public static String multipli(String n1, String n2, String baseStr){
+        int base = Integer.valueOf(baseStr);
+        
+
+        return null;
+    }
+
+    public static String mulDigit(int d1, int d2, int base){
+        int result_NBase = (d1*d2)/base + (d1*d2)%base;
+        return Integer.toString(result_NBase);
+    }
 
 }

@@ -8,8 +8,8 @@ public class App {
         int base = Integer.valueOf(input[2]);
         String sum = plus(input[0], input[1], base);
         String mul = multipli(input[0], input[1], base);
-        // System.out.println(fillZero(input[0], input[1])[0] + " " + fillZero(input[0],
-        // input[1])[1]);
+        //cut off starting zero
+        mul = mul.replaceAll("^0+", "");
         System.out.println(sum + " " + mul + " " + "0");
     }
 

@@ -10,10 +10,12 @@ public class App {
         String mul = multipli(input[0], input[1], base);
         // cut off starting zero
         mul = mul.replaceAll("^0+", "");
-        System.out.println(sum + " " + mul + " " + "0");
+        String div = division(input[0], input[1], base);
+        System.out.println(sum + " " + mul + " " + div);
+        // System.out.println(compare(input[0], input[1]));
 
-        String sub = subtract(input[0], input[1], base);
-        System.out.println(sub);
+        // String sub = subtract(input[0], input[1], base);
+        // System.out.println(sub);
     }
 
     public static String plus(String n1, String n2, int base) {
@@ -114,6 +116,54 @@ public class App {
         return plus(plus(first, second, base), bd, base);
     }
 
+    public static String division(String n1, String n2, int base) {
+        if (compare(n1, n2) == -1) {
+            return "0";
+        }
+        if (compare(n1, n2) == 0) {
+            return "1";
+        }
+        Queue<Character> dividendQueue = new LinkedList<>();
+        StringBuilder sbQuotient = new StringBuilder();
+        String dividend = "0";
+        String mul = "0";
+
+        for (char c : n1.toCharArray()) {
+            dividendQueue.add(c);
+        }
+        while (!dividendQueue.isEmpty()) {
+            int count = 0;
+            while (compare(dividend, n2) == -1) {
+                dividend += dividendQueue.poll();
+                count++;
+            }
+            for(int i = 0; i < count-1; i++){
+                sbQuotient.append('0');
+            }
+            dividend = dividend.replaceAll("^0+", "");
+            System.out.println(dividend);
+            if (compare(dividend, n2) != -1) {
+                for (int i = 1; i < base - 1; i++) {
+                    // System.out.println(i);
+                    mul = multipli(Integer.toString(i), n2, base).replaceAll("^0+", "");
+                    if (compare(mul, dividend) == 0) {
+                        mul = multipli(Integer.toString(i), n2, base).replaceAll("^0+", "");
+                        sbQuotient.append(i);
+                        break;
+                    }
+                    if (compare(mul, dividend) == 1) {
+                        mul = multipli(Integer.toString(i - 1), n2, base).replaceAll("^0+", "");
+                        sbQuotient.append(i - 1);
+                        break;
+                    }
+                }
+                dividend = subtract(dividend, mul, base).replaceAll("^0+", "");
+            }
+        }
+
+        return sbQuotient.toString().replaceAll("^0+", "");
+    }
+
     public static String subtract(String n1, String n2, int base) {
         // help function for division, so n1 always larger than n2
         Stack<Character> number1 = new Stack<>();
@@ -161,25 +211,25 @@ public class App {
         return sb.toString().replaceAll("^0+", "");
     }
 
-    public static boolean compare(String n1, String n2) {
+    public static int compare(String n1, String n2) {
         int d1 = n1.length();
         int d2 = n2.length();
         if (d1 > d2) {
-            return true;
+            return 1;
         } else if (d2 > d1) {
-            return false;
-        }else{
-            for(int i=0; i<d1; i++){
-                if(n1.charAt(i) > n2.charAt(i)){
-                    return true;
-                }else if(n1.charAt(i) < n2.charAt(i)){
-                    return false;
-                }else{
+            return -1;
+        } else {
+            for (int i = 0; i < d1; i++) {
+                if (n1.charAt(i) > n2.charAt(i)) {
+                    return 1;
+                } else if (n1.charAt(i) < n2.charAt(i)) {
+                    return -1;
+                } else {
                     continue;
                 }
             }
         }
-        return true;
+        return 0;
     }
 
     public static String[] fillZero(String n1, String n2) {

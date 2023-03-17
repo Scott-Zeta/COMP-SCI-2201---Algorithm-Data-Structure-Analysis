@@ -143,16 +143,18 @@ public class App {
             dividend = dividend.replaceAll("^0+", "");
             System.out.println(dividend);
             if (compare(dividend, n2) != -1) {
-                for (int i = 1; i < base - 1; i++) {
+                for (int i = 1; i < base; i++) {
                     // System.out.println(i);
                     mul = multipli(Integer.toString(i), n2, base).replaceAll("^0+", "");
                     if (compare(mul, dividend) == 0) {
                         mul = multipli(Integer.toString(i), n2, base).replaceAll("^0+", "");
+                        // System.out.println("mul:" + mul);
                         sbQuotient.append(i);
                         break;
                     }
                     if (compare(mul, dividend) == 1) {
                         mul = multipli(Integer.toString(i - 1), n2, base).replaceAll("^0+", "");
+                        
                         sbQuotient.append(i - 1);
                         break;
                     }
@@ -161,7 +163,7 @@ public class App {
             }
         }
 
-        return sbQuotient.toString().replaceAll("^0+", "");
+        return sbQuotient.toString();
     }
 
     public static String subtract(String n1, String n2, int base) {

@@ -8,7 +8,7 @@ public class App {
         int base = Integer.valueOf(input[2]);
         String sum = plus(input[0], input[1], base);
         String mul = multipli(input[0], input[1], base);
-        //cut off starting zero
+        // cut off starting zero
         mul = mul.replaceAll("^0+", "");
         System.out.println(sum + " " + mul + " " + "0");
 
@@ -115,7 +115,7 @@ public class App {
     }
 
     public static String subtract(String n1, String n2, int base) {
-        //help function for division, so n1 always larger than n2
+        // help function for division, so n1 always larger than n2
         Stack<Character> number1 = new Stack<>();
         Stack<Character> number2 = new Stack<>();
         StringBuilder sb = new StringBuilder();
@@ -132,10 +132,10 @@ public class App {
             int d1 = number1.pop() - '0';
             int d2 = number2.pop() - '0';
             int sum = d1 - d2;
-            if (d1 < d2){
+            if (d1 < d2) {
                 sum = base - d2 + d1 - buffer;
                 buffer = 1;
-            }else{
+            } else {
                 buffer = 0;
             }
             sb.append((char) (sum + '0'));
@@ -159,6 +159,27 @@ public class App {
 
         sb.reverse();
         return sb.toString().replaceAll("^0+", "");
+    }
+
+    public static boolean compare(String n1, String n2) {
+        int d1 = n1.length();
+        int d2 = n2.length();
+        if (d1 > d2) {
+            return true;
+        } else if (d2 > d1) {
+            return false;
+        }else{
+            for(int i=0; i<d1; i++){
+                if(n1.charAt(i) > n2.charAt(i)){
+                    return true;
+                }else if(n1.charAt(i) < n2.charAt(i)){
+                    return false;
+                }else{
+                    continue;
+                }
+            }
+        }
+        return true;
     }
 
     public static String[] fillZero(String n1, String n2) {

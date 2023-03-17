@@ -10,12 +10,9 @@ public class App {
         String mul = multipli(input[0], input[1], base);
         // cut off starting zero
         mul = mul.replaceAll("^0+", "");
-        String div = division(input[0], input[1], base);
-        System.out.println(sum + " " + mul + " " + div);
-        // System.out.println(compare(input[0], input[1]));
-
-        // String sub = subtract(input[0], input[1], base);
-        // System.out.println(sub);
+        //String div = division(input[0], input[1], base);
+        
+        System.out.println(sum + " " + mul + " " + "0");
     }
 
     public static String plus(String n1, String n2, int base) {

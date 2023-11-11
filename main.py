@@ -7,6 +7,10 @@ def string_to_int(s):
         return ord(s) - ord('A')
     elif 'a' <= s <= 'z':
         return ord(s) - ord('a') + 26
+    
+def int_to_string(i):
+    if 0 <= i <= 25:
+        return chr(i + ord('A'))
 
 def parse_input():
     if len(sys.argv) != 4:
@@ -24,14 +28,15 @@ def parse_input():
             table_data.append(row_data)
         information.append(table_data)
     return information
-        
+     
 def main():
     information = parse_input()
     connection = information[0]
     construction = information[1]
-    desctruction = information[2]
+    destruction = information[2]
     print(f"Connection: {connection}")
     print(f"Construction: {construction}")
-    print(f"Destruction: {desctruction}")
+    print(f"Destruction: {destruction}")
+    
 if __name__ == "__main__":
     main()

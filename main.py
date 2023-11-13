@@ -28,15 +28,34 @@ def parse_input():
             table_data.append(row_data)
         information.append(table_data)
     return information
-     
+    
+def combine_table(connection, construction, destruction):
+    graph = {}
+    for i in range(len(connection)):
+        row = {}
+        for j in range(len(connection[i])):
+            if connection[i][j] == 0:
+                row[int_to_string(j)] = construction[i][j]
+            else:
+                row[int_to_string(j)] = - destruction[i][j]
+        graph[int_to_string(i)] = row  
+    return graph
+
 def main():
     information = parse_input()
     connection = information[0]
     construction = information[1]
     destruction = information[2]
-    print(f"Connection: {connection}")
-    print(f"Construction: {construction}")
-    print(f"Destruction: {destruction}")
+    # print(f"Connection: {connection}")
+    # print(f"Construction: {construction}")
+    # print(f"Destruction: {destruction}")
+    graph = combine_table(connection, construction, destruction)
+    print(f"Graph: {graph}")
     
 if __name__ == "__main__":
     main()
+    
+## input:
+# all connection: python3 main.py 1111,1111,1111,1111 ABFE,BACG,FCAD,EGDA ABFE,BACG,FCAD,EGDA
+# mixed case: python3 main.py 011000,101000,110000,000011,000101,000110 ABDFFF,BACFFF,DCAFFF,FFFABD,FFFBAC,FFFDCA ABDFFF,BACFFF,DCAFFF,FFFABD,FFFBAC,FFFDCA
+# no connection: python3 main.py 000,000,000 ABD,BAC,DCA ABD,BAC,DCA

@@ -14,5 +14,3 @@ So, use negative number for exist edge as weight.
 ## Highlighted Difficulties
 
 Write in C++ as Uni required.
-
-Test for SSH Push
